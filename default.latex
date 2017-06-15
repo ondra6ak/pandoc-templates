@@ -1,3 +1,4 @@
+
 \documentclass[a4paper,$if(lang)$$babel-lang$,$endif$$for(classoption)$$classoption$$sep$,$endfor$]{$documentclass$}
 
 \usepackage{fontspec}
@@ -7,12 +8,23 @@
 \renewcommand{\dateseparator}{-}
 
 \usepackage{titling}
+\newenvironment{roboto_title}{\fontspec{Roboto Medium}\Large\setlength{\parindent}{0pt}}{\newline}
+\newenvironment{roboto_author_date}{\fontspec{Roboto Italic}\large\setlength{\parindent}{0pt}}{\newline}
+
+\pretitle{\begin{roboto_title}}
+\posttitle{\end{roboto_title}}
+
+\preauthor{\begin{roboto_author_date}}
+\postauthor{\end{roboto_author_date}}
+
+\predate{\begin{roboto_author_date}}
+\postdate{\end{roboto_author_date}}
+
 \usepackage{titlesec}
 \newfontfamily\headingfont[]{Roboto Medium}
 \titleformat*{\section}{\Large\headingfont}
 \titleformat*{\subsection}{\large\headingfont}
 \titleformat*{\subsubsection}{\headingfont}
-\renewcommand{\maketitlehooka}{\headingfont}
 
 $if(linestretch)$
 \usepackage{setspace}
@@ -113,15 +125,6 @@ $if(strikeout)$
 \usepackage[normalem]{ulem}
 % avoid problems with \sout in headers with hyperref:
 \pdfstringdefDisableCommands{\renewcommand{\sout}{}}
-$endif$
-$if(indent)$
-$else$
-\IfFileExists{parskip.sty}{%
-\usepackage{parskip}
-}{% else
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
-}
 $endif$
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 \providecommand{\tightlist}{%
