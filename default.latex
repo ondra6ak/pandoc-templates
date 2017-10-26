@@ -26,6 +26,8 @@
 \titleformat*{\subsection}{\large\headingfont}
 \titleformat*{\subsubsection}{\headingfont}
 
+\renewcommand\and{\unskip, }
+
 $if(linestretch)$
 \usepackage{setspace}
 \setstretch{$linestretch$}
@@ -168,7 +170,7 @@ $header-includes$
 $endfor$
 
 $if(title)$
-\title{$title$$if(thanks)$\thanks{$thanks$}$endif$}
+\title{$title$$if(subtitle)$\\\large{$subtitle$}$endif$$if(thanks)$\thanks{$thanks$}$endif$}
 $endif$
 $if(subtitle)$
 \providecommand{\subtitle}[1]{}
